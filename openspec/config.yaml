@@ -1,0 +1,37 @@
+schema: spec-driven
+
+context: |
+  Language: Russian
+  Write in Russian, but:
+    - Remain technical terms in English (e.g. "API", "REST", "GraphQL", etc.)
+    - File paths remain in English
+    - git commits remain in English
+
+  Architecture: microservices (including microfrontends)
+  Repo: monorepo (managed with nx and pnpm)
+  Microservices: database, backend, two microfrontends (NAME THEM)
+
+  Tech stack:
+    Frontend: TypeScript, React, leaflet + terra-draw + leaflet-react
+    Backend: ExpressJS, nanoid
+    DB: CHOOSE_DB, CHOOSE_ORM
+  State manager: MobX
+  Bundler: Vite
+  Linter: biomeJS
+  Testing: vitest with react-testing-library (jsdom)
+  CI-CD: husky, gitlab ci-cd
+  Containerization: docker
+  Host: local via docker
+
+  Domain: administrative platform for industrial Russian agriculturists
+  We use git-flow commits
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours

@@ -1,0 +1,359 @@
+{
+  "version": "6.0",
+  "nxVersion": "22.6.5",
+  "pathMappings": {},
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/docker",
+      "version": "22.6.5",
+      "options": {
+        "buildTarget": {
+          "name": "docker:build"
+        },
+        "runTarget": {
+          "name": "docker:run"
+        }
+      }
+    }
+  ],
+  "fileMap": {
+    "nonProjectFiles": [],
+    "projectFileMap": {
+      "agronom.io": [
+        {
+          "file": ".agent/skills/openspec-apply-change/SKILL.md",
+          "hash": "13205308686620692476"
+        },
+        {
+          "file": ".agent/skills/openspec-archive-change/SKILL.md",
+          "hash": "6448462977564128496"
+        },
+        {
+          "file": ".agent/skills/openspec-explore/SKILL.md",
+          "hash": "620409523975987019"
+        },
+        {
+          "file": ".agent/skills/openspec-propose/SKILL.md",
+          "hash": "8949212967904531090"
+        },
+        {
+          "file": ".agent/workflows/opsx-apply.md",
+          "hash": "3467710743467919522"
+        },
+        {
+          "file": ".agent/workflows/opsx-archive.md",
+          "hash": "4199192039394525569"
+        },
+        {
+          "file": ".agent/workflows/opsx-explore.md",
+          "hash": "16499609716570536737"
+        },
+        {
+          "file": ".agent/workflows/opsx-propose.md",
+          "hash": "5583468967077467654"
+        },
+        {
+          "file": ".agents/skills/link-workspace-packages/SKILL.md",
+          "hash": "6638592300654417978"
+        },
+        {
+          "file": ".agents/skills/monitor-ci/SKILL.md",
+          "hash": "8399173415832764241"
+        },
+        {
+          "file": ".agents/skills/monitor-ci/references/fix-flows.md",
+          "hash": "14499115380699629375"
+        },
+        {
+          "file": ".agents/skills/monitor-ci/scripts/ci-poll-decide.mjs",
+          "hash": "11489724214132048566"
+        },
+        {
+          "file": ".agents/skills/monitor-ci/scripts/ci-state-update.mjs",
+          "hash": "13401974159889364904"
+        },
+        {
+          "file": ".agents/skills/nx-generate/SKILL.md",
+          "hash": "16801959272346088877"
+        },
+        {
+          "file": ".agents/skills/nx-import/SKILL.md",
+          "hash": "9709061508228126022"
+        },
+        {
+          "file": ".agents/skills/nx-import/references/ESLINT.md",
+          "hash": "3100736771536685484"
+        },
+        {
+          "file": ".agents/skills/nx-import/references/GRADLE.md",
+          "hash": "15868511153961490698"
+        },
+        {
+          "file": ".agents/skills/nx-import/references/JEST.md",
+          "hash": "8022966628634571060"
+        },
+        {
+          "file": ".agents/skills/nx-import/references/NEXT.md",
+          "hash": "8705422121624482541"
+        },
+        {
+          "file": ".agents/skills/nx-import/references/TURBOREPO.md",
+          "hash": "6654032474246573297"
+        },
+        {
+          "file": ".agents/skills/nx-import/references/VITE.md",
+          "hash": "5793928500507593678"
+        },
+        {
+          "file": ".agents/skills/nx-plugins/SKILL.md",
+          "hash": "4717624081372438208"
+        },
+        {
+          "file": ".agents/skills/nx-run-tasks/SKILL.md",
+          "hash": "10723914446406921246"
+        },
+        {
+          "file": ".agents/skills/nx-workspace/SKILL.md",
+          "hash": "56694506768298655"
+        },
+        {
+          "file": ".agents/skills/nx-workspace/references/AFFECTED.md",
+          "hash": "10577828056523124002"
+        },
+        {
+          "file": ".claude/commands/opsx/apply.md",
+          "hash": "993604853429924103"
+        },
+        {
+          "file": ".claude/commands/opsx/archive.md",
+          "hash": "5838970429323471114"
+        },
+        {
+          "file": ".claude/commands/opsx/explore.md",
+          "hash": "18049952705130459447"
+        },
+        {
+          "file": ".claude/commands/opsx/propose.md",
+          "hash": "7950434039869476956"
+        },
+        {
+          "file": ".claude/skills/openspec-apply-change/SKILL.md",
+          "hash": "13205308686620692476"
+        },
+        {
+          "file": ".claude/skills/openspec-archive-change/SKILL.md",
+          "hash": "6448462977564128496"
+        },
+        {
+          "file": ".claude/skills/openspec-explore/SKILL.md",
+          "hash": "620409523975987019"
+        },
+        {
+          "file": ".claude/skills/openspec-propose/SKILL.md",
+          "hash": "8949212967904531090"
+        },
+        {
+          "file": ".dockerignore",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": ".gemini/commands/monitor-ci.toml",
+          "hash": "14184780502634171331"
+        },
+        {
+          "file": ".gemini/commands/opsx/apply.toml",
+          "hash": "12659336656763082191"
+        },
+        {
+          "file": ".gemini/commands/opsx/archive.toml",
+          "hash": "11928844182972599241"
+        },
+        {
+          "file": ".gemini/commands/opsx/explore.toml",
+          "hash": "9750178842468896693"
+        },
+        {
+          "file": ".gemini/commands/opsx/propose.toml",
+          "hash": "7648477541869501191"
+        },
+        {
+          "file": ".gemini/settings.json",
+          "hash": "5921792102792576356"
+        },
+        {
+          "file": ".gemini/skills/openspec-apply-change/SKILL.md",
+          "hash": "13205308686620692476"
+        },
+        {
+          "file": ".gemini/skills/openspec-archive-change/SKILL.md",
+          "hash": "6448462977564128496"
+        },
+        {
+          "file": ".gemini/skills/openspec-explore/SKILL.md",
+          "hash": "620409523975987019"
+        },
+        {
+          "file": ".gemini/skills/openspec-propose/SKILL.md",
+          "hash": "8949212967904531090"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "2027818105888162093"
+        },
+        {
+          "file": ".husky/pre-commit",
+          "hash": "9829785307989838923"
+        },
+        {
+          "file": ".opencode/agents/ci-monitor-subagent.md",
+          "hash": "6611362967399008889"
+        },
+        {
+          "file": ".opencode/commands/monitor-ci.md",
+          "hash": "12455117996087874585"
+        },
+        {
+          "file": ".opencode/commands/opsx-apply.md",
+          "hash": "7355033512960117352"
+        },
+        {
+          "file": ".opencode/commands/opsx-archive.md",
+          "hash": "17632158089091861585"
+        },
+        {
+          "file": ".opencode/commands/opsx-explore.md",
+          "hash": "3763335063641749049"
+        },
+        {
+          "file": ".opencode/commands/opsx-propose.md",
+          "hash": "17064630164261741364"
+        },
+        {
+          "file": ".opencode/skills/link-workspace-packages/SKILL.md",
+          "hash": "6638592300654417978"
+        },
+        {
+          "file": ".opencode/skills/monitor-ci/SKILL.md",
+          "hash": "8399173415832764241"
+        },
+        {
+          "file": ".opencode/skills/monitor-ci/references/fix-flows.md",
+          "hash": "14499115380699629375"
+        },
+        {
+          "file": ".opencode/skills/monitor-ci/scripts/ci-poll-decide.mjs",
+          "hash": "11489724214132048566"
+        },
+        {
+          "file": ".opencode/skills/monitor-ci/scripts/ci-state-update.mjs",
+          "hash": "13401974159889364904"
+        },
+        {
+          "file": ".opencode/skills/nx-generate/SKILL.md",
+          "hash": "16801959272346088877"
+        },
+        {
+          "file": ".opencode/skills/nx-import/SKILL.md",
+          "hash": "9709061508228126022"
+        },
+        {
+          "file": ".opencode/skills/nx-import/references/ESLINT.md",
+          "hash": "3100736771536685484"
+        },
+        {
+          "file": ".opencode/skills/nx-import/references/GRADLE.md",
+          "hash": "15868511153961490698"
+        },
+        {
+          "file": ".opencode/skills/nx-import/references/JEST.md",
+          "hash": "8022966628634571060"
+        },
+        {
+          "file": ".opencode/skills/nx-import/references/NEXT.md",
+          "hash": "8705422121624482541"
+        },
+        {
+          "file": ".opencode/skills/nx-import/references/TURBOREPO.md",
+          "hash": "6654032474246573297"
+        },
+        {
+          "file": ".opencode/skills/nx-import/references/VITE.md",
+          "hash": "5793928500507593678"
+        },
+        {
+          "file": ".opencode/skills/nx-plugins/SKILL.md",
+          "hash": "4717624081372438208"
+        },
+        {
+          "file": ".opencode/skills/nx-run-tasks/SKILL.md",
+          "hash": "10723914446406921246"
+        },
+        {
+          "file": ".opencode/skills/nx-workspace/SKILL.md",
+          "hash": "56694506768298655"
+        },
+        {
+          "file": ".opencode/skills/nx-workspace/references/AFFECTED.md",
+          "hash": "10577828056523124002"
+        },
+        {
+          "file": ".opencode/skills/openspec-apply-change/SKILL.md",
+          "hash": "6625450324283478370"
+        },
+        {
+          "file": ".opencode/skills/openspec-archive-change/SKILL.md",
+          "hash": "6448462977564128496"
+        },
+        {
+          "file": ".opencode/skills/openspec-explore/SKILL.md",
+          "hash": "10097839450974900533"
+        },
+        {
+          "file": ".opencode/skills/openspec-propose/SKILL.md",
+          "hash": "11302788969091689536"
+        },
+        {
+          "file": "AGENTS.md",
+          "hash": "3693179293707062853"
+        },
+        {
+          "file": "Dockerfile",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "LICENSE.md",
+          "hash": "6580122529879240407"
+        },
+        {
+          "file": "docker-compose.yaml",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "nx.json",
+          "hash": "15976264732411318181"
+        },
+        {
+          "file": "opencode.json",
+          "hash": "16592868722877903603"
+        },
+        {
+          "file": "openspec/config.yaml",
+          "hash": "4052177601159830275"
+        },
+        {
+          "file": "package.json",
+          "hash": "5190931876467170137"
+        },
+        {
+          "file": "pnpm-lock.yaml",
+          "hash": "15984615429637784399"
+        },
+        {
+          "file": "pnpm-workspaces.yaml",
+          "hash": "3185964832996314837"
+        }
+      ]
+    }
+  },
+  "externalNodesHash": "2942176115588265732"
+}
