@@ -1,0 +1,220 @@
+{
+  ".": {
+    "root": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.Docker": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "metadata.targetGroups.Docker.0": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "metadata.targetGroups.Docker.1": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "metadata.targetGroups.Docker.2": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.dependsOn": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.options": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.inputs": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.executor": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.options.cwd": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.options.args": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.options.command": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata.technologies": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata.technologies.0": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata.description": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata.help": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata.help.command": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:build.metadata.help.example": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.dependsOn": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.options": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.inputs": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.executor": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.options.cwd": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.options.command": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata.technologies": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata.technologies.0": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata.description": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata.help": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata.help.command": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.docker:run.metadata.help.example": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.nx-release-publish": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "targets.nx-release-publish.executor": [
+      "Dockerfile",
+      "@nx/docker"
+    ],
+    "name": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "tags": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:public": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.description": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageMain": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare.executor": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare.options": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare.metadata": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare.options.script": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare.metadata.scriptContent": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.prepare.metadata.runCommand": [
+      "package.json",
+      "nx/core/package-json"
+    ]
+  }
+}
