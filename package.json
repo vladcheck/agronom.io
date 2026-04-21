@@ -16,7 +16,7 @@
     "ci:quality": "pnpm lint:affected && pnpm test:affected",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:reset-force": "prisma db push --force-reset",
+    "db:reset-force": "./scripts/prisma-complete-clear.sh",
     "pretypecheck": "prisma generate",
     "typecheck:all": "nx run-many --target=typecheck --all",
     "typecheck:affected": "nx affected --target=typecheck"
