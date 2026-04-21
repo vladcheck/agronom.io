@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@agrar-io/shared/*": [
+      "@agrario/shared/*": [
         "../../packages/shared/src/*"
       ]
     }

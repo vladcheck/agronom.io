@@ -1,23 +1,22 @@
 {
-  "name": "@workspace/backend",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@agrario/backend",
+  "version": "0.1.0",
   "main": "./cmd/app.ts",
+  "type": "module",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "@prisma/client": "*",
     "prisma": "*",
     "@types/express": "^5.0.6",
-    "typescript": "*"
+    "typescript": "*",
+    "vitest": "*"
   },
   "dependencies": {
+    "@agrario/shared": "workspace:*",
     "express": "^5.2.1"
   }
 }

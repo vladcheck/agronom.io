@@ -17,6 +17,19 @@
     ]
   },
   "targetDefaults": {
+    "typecheck": {
+      "cache": true,
+      "dependsOn": [
+        "^build",
+        "^typecheck"
+      ],
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/tsconfig.base.json",
+        "{projectRoot}/tsconfig.json"
+      ]
+    },
     "build": {
       "dependsOn": [
         "^build"

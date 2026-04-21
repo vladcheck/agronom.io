@@ -8,6 +8,7 @@
     "types": [
       "node"
     ],
+    "moduleResolution": "nodenext",
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
@@ -15,10 +16,16 @@
     "exactOptionalPropertyTypes": true,
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "exclude": [
+    "**/node_modules/*",
+    "**/dist/*",
+    "**/build/*",
+    "**/out/*"
+  ]
 }

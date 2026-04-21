@@ -1,7 +1,8 @@
 {
   "name": "agrario",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
+  "type": "module",
   "private": true,
   "scripts": {
     "prepare": "husky",
@@ -16,10 +17,17 @@
     "ci:quality": "pnpm lint:affected && pnpm test:affected",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:reset-force": "prisma db push --force-reset"
+    "db:reset-force": "prisma db push --force-reset",
+    "pretypecheck": "prisma generate",
+    "typecheck:all": "nx run-many --target=typecheck --all",
+    "typecheck:affected": "nx affected --target=typecheck"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "agroculture",
+    "farm",
+    "management",
+    "software"
+  ],
   "license": "BSD-3-Clause",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
