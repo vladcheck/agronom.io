@@ -1,3 +1,7 @@
 packages:
   - ./apps/**
   - ./packages/**
+allowBuilds:
+  '@prisma/engines': true
+  core-js: true
+  prisma: true

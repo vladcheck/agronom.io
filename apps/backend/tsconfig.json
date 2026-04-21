@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@agrar-io/shared/*": [
+        "../../packages/shared/src/*"
+      ]
+    }
+  }
+}

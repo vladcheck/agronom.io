@@ -1,19 +1,41 @@
 {
-  "name": "agronom.io",
+  "name": "agrario",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "nx run-many -t lint --all",
+    "lint:affected": "nx affected -t lint",
+    "lint:fix": "nx affected -t lint --fix",
+    "test": "nx run-many -t test --all",
+    "test:affected": "nx affected -t test",
+    "test:coverage": "nx affected -t test -- --coverage",
+    "format": "biome check --write .",
+    "format:check": "biome check .",
+    "ci:quality": "pnpm lint:affected && pnpm test:affected",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",
   "license": "BSD-3-Clause",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
+    "@nx/docker": "22.6.5",
+    "@prisma/adapter-pg": "^7.7.0",
+    "@prisma/client": "^7.7.0",
+    "@types/node": "^25.6.0",
+    "dotenv": "^17.4.2",
     "husky": "^9.1.7",
     "nx": "22.6.5",
-    "@nx/docker": "22.6.5"
+    "pg": "^8.20.0",
+    "prisma": "^7.7.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.4"
   },
-  "nx": {}
+  "nx": {},
+  "engines": {
+    "node": "24.1.0"
+  }
 }

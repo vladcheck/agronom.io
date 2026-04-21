@@ -146,3 +146,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Prisma generated client (build artifact)
+packages/shared/src/database/generated/**
+!packages/shared/src/database/generated/.gitkeep
+
+# Prisma migration backups (optional)
+prisma/migrations/**/migration_lock.toml
+
+# OS garbage
+.DS_Store
