@@ -1,12 +1,13 @@
 {
-  "name": "@agrario/frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "typecheck": "tsc --noEmit"
-  },
-  "packageManager": "pnpm@10.33.0",
-  "devDependencies": {
-    "typescript": "*"
-  }
+	"name": "@agrario/frontend",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"lint": "pnpx @biomejs/biome check",
+		"typecheck": "tsc --noEmit"
+	},
+	"packageManager": "pnpm@10.33.0",
+	"devDependencies": {
+		"typescript": "*"
+	}
 }
