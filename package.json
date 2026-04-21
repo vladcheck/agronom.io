@@ -11,11 +11,12 @@
     "test": "nx run-many -t test --all",
     "test:affected": "nx affected -t test",
     "test:coverage": "nx affected -t test -- --coverage",
-    "format": "biome check --write .",
-    "format:check": "biome check .",
+    "format": "npx biome check --write .",
+    "format:check": "npx biome check .",
     "ci:quality": "pnpm lint:affected && pnpm test:affected",
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev"
+    "db:migrate": "prisma migrate dev",
+    "db:reset-force": "prisma db push --force-reset"
   },
   "keywords": [],
   "author": "",
