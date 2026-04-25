@@ -1,0 +1,1094 @@
+{
+  "11245626622885529445Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "10075809882234440472Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "17675548730408382653Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "10986245084716369724Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "15582613768006734553Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "3660187036868504892Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "15483434236332964501Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "9919009562066558433Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "6915968622525982639Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "12674779621340882795Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "688842783627794717Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "14924401449688973785Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "10796643885380541264Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  },
+  "5550252287967768624Dockerfile": {
+    "targets": {
+      "docker:build": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ],
+        "command": "docker build .",
+        "options": {
+          "cwd": ".",
+          "args": [
+            "--tag users-vlad.valekzhanin-github-vladcheck-agronom.io"
+          ]
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker build",
+          "help": {
+            "command": "docker build --help",
+            "example": {
+              "options": {
+                "cache-from": "type=s3,region=eu-west-1,bucket=mybucket .",
+                "cache-to": "type=s3,region=eu-west-1,bucket=mybucket ."
+              }
+            }
+          }
+        }
+      },
+      "docker:run": {
+        "dependsOn": [
+          "docker:build"
+        ],
+        "command": "docker run {args} users-vlad.valekzhanin-github-vladcheck-agronom.io",
+        "options": {
+          "cwd": "."
+        },
+        "inputs": [
+          "default",
+          "^default"
+        ],
+        "metadata": {
+          "technologies": [
+            "docker"
+          ],
+          "description": "Run Docker run",
+          "help": {
+            "command": "docker run --help",
+            "example": {
+              "options": {
+                "args": [
+                  "-p",
+                  "3000:3000"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "nx-release-publish": {
+        "executor": "@nx/docker:release-publish"
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "Docker": [
+          "docker:build",
+          "docker:run",
+          "nx-release-publish"
+        ]
+      }
+    }
+  }
+}

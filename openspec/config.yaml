@@ -12,9 +12,9 @@ context: |
   Microservices: database, backend, two microfrontends (NAME THEM)
 
   Tech stack:
-    Frontend: TypeScript, React, leaflet + terra-draw + leaflet-react
+    Frontend: TypeScript, React, leaflet + leaflet-react, turf.js, terra-draw
     Backend: ExpressJS, nanoid
-    DB: CHOOSE_DB, CHOOSE_ORM
+    DB: PostgreSQL + PostGIS, Prisma ORM
   State manager: MobX
   Bundler: Vite
   Linter: biomeJS
@@ -22,6 +22,9 @@ context: |
   CI-CD: husky, gitlab ci-cd
   Containerization: docker
   Host: local via docker
+  APIs:
+    - OpenWeather, for weather data
+    - Kaegro Global Soil API, for soil data
 
   Domain: administrative platform for industrial Russian agriculturists
   We use git-flow commits
