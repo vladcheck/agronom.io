@@ -1,0 +1,9 @@
+node_modules
+docs
+.agents?
+.claude
+.codex
+.gemini
+.opencode
+openspec
+prisma/generated
