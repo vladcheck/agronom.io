@@ -4,15 +4,15 @@
     "autoExit": true
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/vitest.config.ts"
+      "!{projectRoot}/vitest.config.ts",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": [
       "{workspaceRoot}/biome.json",
@@ -22,10 +22,7 @@
   "targetDefaults": {
     "typecheck": {
       "cache": true,
-      "dependsOn": [
-        "^build",
-        "^typecheck"
-      ],
+      "dependsOn": ["^build", "^typecheck"],
       "inputs": [
         "default",
         "^default",
@@ -34,13 +31,8 @@
       ]
     },
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ],
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
       "cache": true
     },
     "test": {
@@ -48,10 +40,7 @@
       "options": {
         "command": "vitest run --config {projectRoot}/vitest.config.ts"
       },
-      "inputs": [
-        "default",
-        "^production"
-      ],
+      "inputs": ["default", "^production"],
       "cache": true
     },
     "lint": {
@@ -59,16 +48,11 @@
       "options": {
         "command": "biome check {projectRoot}/src"
       },
-      "inputs": [
-        "default",
-        "{workspaceRoot}/biome.json"
-      ],
+      "inputs": ["default", "{workspaceRoot}/biome.json"],
       "cache": true
     },
     "db:migrate": {
-      "dependsOn": [
-        "db:generate"
-      ],
+      "dependsOn": ["db:generate"],
       "cache": false
     }
   },
@@ -82,6 +66,17 @@
         "runTarget": {
           "name": "docker:run"
         }
+      }
+    },
+    {
+      "plugin": "@nx/storybook/plugin",
+      "options": {
+        "serveStorybookTargetName": "storybook",
+        "buildStorybookTargetName": "build-storybook",
+        "testStorybookTargetName": "test-storybook",
+        "staticStorybookTargetName": "static-storybook",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
       }
     }
   ],

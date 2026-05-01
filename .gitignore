@@ -156,3 +156,6 @@ prisma/migrations/**/migration_lock.toml
 
 # OS garbage
 .DS_Store
+
+
+storybook-static
