@@ -1,0 +1,835 @@
+@startuml erd
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # varietyId : [FK] Variety
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * plannedYield : Decimal
+  growthDurationDays : Int
+  appliedSeedWeight : Decimal
+  deletedAt : DateTime
+}
+
+entity "Planting" as Planting {
++ id [PK] : BigInt 
+--
+  # tcId : [FK] TechnologicalCard
+  * startDate : DateTime
+  * endDate : DateTime
+  plantingNormSnapshotThousands : Decimal
+  areaHa : Decimal
+  deletedAt : DateTime
+}
+
+entity "PlantingGreenhouseBlock" as PlantingGreenhouseBlock {
++ id [PK] : Int 
+--
+  # seedingId : [FK] Planting
+  # blockId : [FK] GreenhouseBlock
+}
+
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "UserRoleAssignment" as UserRoleAssignment {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  # userRoleId : [FK] UserRole
+  deletedAt : DateTime
+}
+
+entity "UserRole" as UserRole {
++ id [PK] : BigInt 
+--
+  * roleName : [UK] String
+  deletedAt : DateTime
+}
+
+entity "Session" as Session {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  refreshTokenHash : String
+  * expiresAt : DateTime
+  createdAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "EnterpriseOwner" as EnterpriseOwner {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userOwnerId : [FK] User
+}
+
+entity "EnterpriseMember" as EnterpriseMember {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userMemberId : [FK] User
+}
+
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt 
+--
+  # ghBlockId : [FK] GreenhouseBlock
+  # ghShapeTypeId : [FK] GreenhouseShape
+  # ghMaterialId : [FK] GreenhouseMaterial
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "GreenhouseMaterial" as GreenhouseMaterial {
++ id [PK] : BigInt 
+--
+  * materialName : [UK] String
+}
+
+entity "GreenhouseShape" as GreenhouseShape {
++ id [PK] : BigInt 
+--
+  * ghShapeName : [UK] String
+  * isExtensible : Boolean
+}
+
+entity "Soil" as Soil {
++ id [PK] : BigInt 
+--
+  * soilName : [UK] String
+  * soilBulkDensity : Float
+  * soilPorosity : Float
+  * soilLayerSpecificMass : Float
+  * soilFieldCapacity : Float
+  * soilAcidity : Float
+}
+
+entity "Variety" as Variety {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  varietyName : String
+  * weight1000Seeds : Decimal
+  * growthFactor : Decimal
+}
+
+entity "Crop" as Crop {
++ id [PK] : BigInt 
+--
+  * cropName : [UK] String
+}
+
+entity "CultureSoilRecommendation" as CultureSoilRecommendation {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  # soilId : [FK] Soil
+}
+
+' Relations
+TechnologicalCard }o--|| Enterprise: enterpriseId
+TechnologicalCard }o--|| Variety: varietyId
+Planting }o--o| TechnologicalCard: tcId
+PlantingGreenhouseBlock }o--o| GreenhouseBlock: blockId
+PlantingGreenhouseBlock }o--|| Planting: seedingId
+UserRoleAssignment }o--|| User: userId
+UserRoleAssignment }o--|| UserRole: userRoleId
+Session }o--|| User: userId
+EnterpriseOwner }o--|| Enterprise: enterpriseId
+EnterpriseOwner }o--|| User: userOwnerId
+EnterpriseMember }o--|| Enterprise: enterpriseId
+EnterpriseMember }o--|| User: userMemberId
+GreenhouseBlock }o--|| Enterprise: enterpriseId
+GreenhouseBlock }o--o| Soil: soilId
+Greenhouse }o--o| GreenhouseBlock: ghBlockId
+Greenhouse }o--|| GreenhouseMaterial: ghMaterialId
+Greenhouse }o--|| GreenhouseShape: ghShapeTypeId
+Variety }o--|| Crop: cropId
+CultureSoilRecommendation }o--|| Crop: cropId
+CultureSoilRecommendation }o--|| Soil: soilId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml TechnologicalCard
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # varietyId : [FK] Variety
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * plannedYield : Decimal
+  growthDurationDays : Int
+  appliedSeedWeight : Decimal
+  deletedAt : DateTime
+}
+
+entity "Planting" as Planting {
++ id [PK] : BigInt 
+--
+  # tcId : [FK] TechnologicalCard
+  * startDate : DateTime
+  * endDate : DateTime
+  plantingNormSnapshotThousands : Decimal
+  areaHa : Decimal
+  deletedAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "Variety" as Variety {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  varietyName : String
+  * weight1000Seeds : Decimal
+  * growthFactor : Decimal
+}
+
+' Relations
+TechnologicalCard }o--|| Enterprise: enterpriseId
+TechnologicalCard }o--|| Variety: varietyId
+Planting }o--o| TechnologicalCard: tcId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Planting
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # varietyId : [FK] Variety
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * plannedYield : Decimal
+  growthDurationDays : Int
+  appliedSeedWeight : Decimal
+  deletedAt : DateTime
+}
+
+entity "Planting" as Planting {
++ id [PK] : BigInt 
+--
+  # tcId : [FK] TechnologicalCard
+  * startDate : DateTime
+  * endDate : DateTime
+  plantingNormSnapshotThousands : Decimal
+  areaHa : Decimal
+  deletedAt : DateTime
+}
+
+entity "PlantingGreenhouseBlock" as PlantingGreenhouseBlock {
++ id [PK] : Int 
+--
+  # seedingId : [FK] Planting
+  # blockId : [FK] GreenhouseBlock
+}
+
+' Relations
+Planting }o--o| TechnologicalCard: tcId
+PlantingGreenhouseBlock }o--|| Planting: seedingId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml PlantingGreenhouseBlock
+skinparam linetype ortho
+entity "Planting" as Planting {
++ id [PK] : BigInt 
+--
+  # tcId : [FK] TechnologicalCard
+  * startDate : DateTime
+  * endDate : DateTime
+  plantingNormSnapshotThousands : Decimal
+  areaHa : Decimal
+  deletedAt : DateTime
+}
+
+entity "PlantingGreenhouseBlock" as PlantingGreenhouseBlock {
++ id [PK] : Int 
+--
+  # seedingId : [FK] Planting
+  # blockId : [FK] GreenhouseBlock
+}
+
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+' Relations
+PlantingGreenhouseBlock }o--o| GreenhouseBlock: blockId
+PlantingGreenhouseBlock }o--|| Planting: seedingId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml User
+skinparam linetype ortho
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "UserRoleAssignment" as UserRoleAssignment {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  # userRoleId : [FK] UserRole
+  deletedAt : DateTime
+}
+
+entity "Session" as Session {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  refreshTokenHash : String
+  * expiresAt : DateTime
+  createdAt : DateTime
+}
+
+entity "EnterpriseOwner" as EnterpriseOwner {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userOwnerId : [FK] User
+}
+
+entity "EnterpriseMember" as EnterpriseMember {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userMemberId : [FK] User
+}
+
+' Relations
+UserRoleAssignment }o--|| User: userId
+Session }o--|| User: userId
+EnterpriseOwner }o--|| User: userOwnerId
+EnterpriseMember }o--|| User: userMemberId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml UserRoleAssignment
+skinparam linetype ortho
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "UserRoleAssignment" as UserRoleAssignment {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  # userRoleId : [FK] UserRole
+  deletedAt : DateTime
+}
+
+entity "UserRole" as UserRole {
++ id [PK] : BigInt 
+--
+  * roleName : [UK] String
+  deletedAt : DateTime
+}
+
+' Relations
+UserRoleAssignment }o--|| User: userId
+UserRoleAssignment }o--|| UserRole: userRoleId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml UserRole
+skinparam linetype ortho
+entity "UserRoleAssignment" as UserRoleAssignment {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  # userRoleId : [FK] UserRole
+  deletedAt : DateTime
+}
+
+entity "UserRole" as UserRole {
++ id [PK] : BigInt 
+--
+  * roleName : [UK] String
+  deletedAt : DateTime
+}
+
+' Relations
+UserRoleAssignment }o--|| UserRole: userRoleId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Session
+skinparam linetype ortho
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "Session" as Session {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  refreshTokenHash : String
+  * expiresAt : DateTime
+  createdAt : DateTime
+}
+
+' Relations
+Session }o--|| User: userId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Enterprise
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # varietyId : [FK] Variety
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * plannedYield : Decimal
+  growthDurationDays : Int
+  appliedSeedWeight : Decimal
+  deletedAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "EnterpriseOwner" as EnterpriseOwner {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userOwnerId : [FK] User
+}
+
+entity "EnterpriseMember" as EnterpriseMember {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userMemberId : [FK] User
+}
+
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+' Relations
+TechnologicalCard }o--|| Enterprise: enterpriseId
+EnterpriseOwner }o--|| Enterprise: enterpriseId
+EnterpriseMember }o--|| Enterprise: enterpriseId
+GreenhouseBlock }o--|| Enterprise: enterpriseId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml EnterpriseOwner
+skinparam linetype ortho
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "EnterpriseOwner" as EnterpriseOwner {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userOwnerId : [FK] User
+}
+
+' Relations
+EnterpriseOwner }o--|| Enterprise: enterpriseId
+EnterpriseOwner }o--|| User: userOwnerId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml EnterpriseMember
+skinparam linetype ortho
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "EnterpriseMember" as EnterpriseMember {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # userMemberId : [FK] User
+}
+
+' Relations
+EnterpriseMember }o--|| Enterprise: enterpriseId
+EnterpriseMember }o--|| User: userMemberId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml GreenhouseBlock
+skinparam linetype ortho
+entity "PlantingGreenhouseBlock" as PlantingGreenhouseBlock {
++ id [PK] : Int 
+--
+  # seedingId : [FK] Planting
+  # blockId : [FK] GreenhouseBlock
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt 
+--
+  # ghBlockId : [FK] GreenhouseBlock
+  # ghShapeTypeId : [FK] GreenhouseShape
+  # ghMaterialId : [FK] GreenhouseMaterial
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "Soil" as Soil {
++ id [PK] : BigInt 
+--
+  * soilName : [UK] String
+  * soilBulkDensity : Float
+  * soilPorosity : Float
+  * soilLayerSpecificMass : Float
+  * soilFieldCapacity : Float
+  * soilAcidity : Float
+}
+
+' Relations
+PlantingGreenhouseBlock }o--o| GreenhouseBlock: blockId
+GreenhouseBlock }o--|| Enterprise: enterpriseId
+GreenhouseBlock }o--o| Soil: soilId
+Greenhouse }o--o| GreenhouseBlock: ghBlockId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Greenhouse
+skinparam linetype ortho
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt 
+--
+  # ghBlockId : [FK] GreenhouseBlock
+  # ghShapeTypeId : [FK] GreenhouseShape
+  # ghMaterialId : [FK] GreenhouseMaterial
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "GreenhouseMaterial" as GreenhouseMaterial {
++ id [PK] : BigInt 
+--
+  * materialName : [UK] String
+}
+
+entity "GreenhouseShape" as GreenhouseShape {
++ id [PK] : BigInt 
+--
+  * ghShapeName : [UK] String
+  * isExtensible : Boolean
+}
+
+' Relations
+Greenhouse }o--o| GreenhouseBlock: ghBlockId
+Greenhouse }o--|| GreenhouseMaterial: ghMaterialId
+Greenhouse }o--|| GreenhouseShape: ghShapeTypeId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml GreenhouseMaterial
+skinparam linetype ortho
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt 
+--
+  # ghBlockId : [FK] GreenhouseBlock
+  # ghShapeTypeId : [FK] GreenhouseShape
+  # ghMaterialId : [FK] GreenhouseMaterial
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "GreenhouseMaterial" as GreenhouseMaterial {
++ id [PK] : BigInt 
+--
+  * materialName : [UK] String
+}
+
+' Relations
+Greenhouse }o--|| GreenhouseMaterial: ghMaterialId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml GreenhouseShape
+skinparam linetype ortho
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt 
+--
+  # ghBlockId : [FK] GreenhouseBlock
+  # ghShapeTypeId : [FK] GreenhouseShape
+  # ghMaterialId : [FK] GreenhouseMaterial
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "GreenhouseShape" as GreenhouseShape {
++ id [PK] : BigInt 
+--
+  * ghShapeName : [UK] String
+  * isExtensible : Boolean
+}
+
+' Relations
+Greenhouse }o--|| GreenhouseShape: ghShapeTypeId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Soil
+skinparam linetype ortho
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+entity "Soil" as Soil {
++ id [PK] : BigInt 
+--
+  * soilName : [UK] String
+  * soilBulkDensity : Float
+  * soilPorosity : Float
+  * soilLayerSpecificMass : Float
+  * soilFieldCapacity : Float
+  * soilAcidity : Float
+}
+
+entity "CultureSoilRecommendation" as CultureSoilRecommendation {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  # soilId : [FK] Soil
+}
+
+' Relations
+GreenhouseBlock }o--o| Soil: soilId
+CultureSoilRecommendation }o--|| Soil: soilId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Variety
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # varietyId : [FK] Variety
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * plannedYield : Decimal
+  growthDurationDays : Int
+  appliedSeedWeight : Decimal
+  deletedAt : DateTime
+}
+
+entity "Variety" as Variety {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  varietyName : String
+  * weight1000Seeds : Decimal
+  * growthFactor : Decimal
+}
+
+entity "Crop" as Crop {
++ id [PK] : BigInt 
+--
+  * cropName : [UK] String
+}
+
+' Relations
+TechnologicalCard }o--|| Variety: varietyId
+Variety }o--|| Crop: cropId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml Crop
+skinparam linetype ortho
+entity "Variety" as Variety {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  varietyName : String
+  * weight1000Seeds : Decimal
+  * growthFactor : Decimal
+}
+
+entity "Crop" as Crop {
++ id [PK] : BigInt 
+--
+  * cropName : [UK] String
+}
+
+entity "CultureSoilRecommendation" as CultureSoilRecommendation {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  # soilId : [FK] Soil
+}
+
+' Relations
+Variety }o--|| Crop: cropId
+CultureSoilRecommendation }o--|| Crop: cropId
+' ManyToMany Relations
+' enum relations
+@enduml
+@startuml CultureSoilRecommendation
+skinparam linetype ortho
+entity "Soil" as Soil {
++ id [PK] : BigInt 
+--
+  * soilName : [UK] String
+  * soilBulkDensity : Float
+  * soilPorosity : Float
+  * soilLayerSpecificMass : Float
+  * soilFieldCapacity : Float
+  * soilAcidity : Float
+}
+
+entity "Crop" as Crop {
++ id [PK] : BigInt 
+--
+  * cropName : [UK] String
+}
+
+entity "CultureSoilRecommendation" as CultureSoilRecommendation {
++ id [PK] : BigInt 
+--
+  # cropId : [FK] Crop
+  # soilId : [FK] Soil
+}
+
+' Relations
+CultureSoilRecommendation }o--|| Crop: cropId
+CultureSoilRecommendation }o--|| Soil: soilId
+' ManyToMany Relations
+' enum relations
+@enduml
