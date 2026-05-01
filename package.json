@@ -11,8 +11,6 @@
     "test:all": "nx run-many -t test --all",
     "test:affected": "nx affected -t test",
     "test:coverage": "nx affected -t test -- --coverage",
-    "format": "pnpx biome check --write .",
-    "format:check": "pnpx biome check .",
     "ci:quality": "pnpm lint:affected && pnpm test:affected",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
@@ -27,24 +25,30 @@
     "management",
     "software"
   ],
+  "dependencies": {
+    "express": "^5.2.1"
+  },
   "license": "BSD-3-Clause",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
-    "@biomejs/biome": "2.4.12",
     "@nx/docker": "22.6.5",
     "@prisma/adapter-pg": "^7.7.0",
-    "@prisma/client": "^7.7.0",
+    "@prisma/client": "^7.8.0",
     "@types/node": "^25.6.0",
     "dotenv": "^17.4.2",
     "husky": "^9.1.7",
     "nx": "22.6.5",
+    "oxfmt": "0.47.0",
+    "oxlint": "1.62.0",
     "pg": "^8.20.0",
-    "prisma": "^7.7.0",
+    "prisma": "^7.8.0",
+    "prisma-generator-express": "1.35.0",
+    "prisma-generator-plantuml-erd": "1.7.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.4"
   },
   "nx": {},
   "engines": {
-    "node": "24.1.0"
+    "node": ">=25.9.0"
   }
 }
