@@ -12,6 +12,8 @@
     "test:all": "nx run-many -t test --all",
     "test:affected": "nx affected -t test",
     "test:coverage": "nx affected -t test -- --coverage",
+    "format:all": "nx run-many -t format --all",
+    "format:affected": "nx affected -t format",
     "ci:quality": "pnpm lint:affected && pnpm test:affected",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",

@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-nx run-many -t lint:fix --all
-nx run-many -t format:fix --all
+nx lint:affected --parallel=3
+# nx format:affected --parallel=3
 pnpm test:affected --parallel=3
