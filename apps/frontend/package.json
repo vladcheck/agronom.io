@@ -8,8 +8,19 @@
     "format:fix": "pnpx oxfmt",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "react": "catalog:react19",
+    "react-admin": "catalog:",
+    "react-dom": "catalog:react19",
+    "react-router": "catalog:",
+    "react-toastify": "catalog:",
+    "vite": "catalog:"
+  },
   "devDependencies": {
-    "typescript": "*"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@types/react-router": "catalog:",
+    "typescript": "catalog:"
   },
   "packageManager": "pnpm@10.33.0"
 }
