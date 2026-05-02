@@ -10,7 +10,7 @@ generator express {
 generator erd_plantuml {
   provider                   = "prisma-generator-plantuml-erd"
   output                     = "../docs/erd.puml"
-  exportPerTables            = true
+  exportPerTables            = false
   showUniqueKeyLabel         = true
   isShowForeignKeyOnRelation = true
 }
