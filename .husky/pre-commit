@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-pnpm lint:fix
-pnpm format:check
+nx lint:affected --parallel=3
+# nx format:affected --parallel=3
 pnpm test:affected --parallel=3

@@ -1,4 +1,16 @@
 {
-	"extends": "./tsconfig.base.json",
-	"exclude": ["**/*.test.ts", "**/*.spec.ts"]
+  "extends": "./tsconfig.base.json",
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.jsx",
+    "**/*.stories.tsx"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.storybook.json"
+    }
+  ]
 }

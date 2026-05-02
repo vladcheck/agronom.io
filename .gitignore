@@ -149,11 +149,13 @@ vite.config.ts.timestamp-*
 .vite/
 
 # Prisma generated client (build artifact)
-packages/shared/src/database/generated/**
-!packages/shared/src/database/generated/.gitkeep
+prisma/generated
 
 # Prisma migration backups (optional)
 prisma/migrations/**/migration_lock.toml
 
 # OS garbage
 .DS_Store
+
+
+storybook-static

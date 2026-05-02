@@ -1,0 +1,180 @@
+@startuml erd
+!theme plain
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt
+--
+  # enterpriseId : [FK] Enterprise
+  # varietyId : [FK] Variety
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * plannedYield : Decimal
+  growthDurationDays : Int
+  appliedSeedWeight : Decimal
+  deletedAt : DateTime
+}
+
+entity "Planting" as Planting {
++ id [PK] : BigInt
+--
+  # tcId : [FK] TechnologicalCard
+  * startDate : DateTime
+  * endDate : DateTime
+  plantingNormSnapshotThousands : Decimal
+  areaHa : Decimal
+  deletedAt : DateTime
+}
+
+entity "PlantingGreenhouseBlock" as PlantingGreenhouseBlock {
++ id [PK] : Int
+--
+  # seedingId : [FK] Planting
+  # blockId : [FK] GreenhouseBlock
+}
+
+entity "User" as User {
++ id [PK] : BigInt
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  deletedAt : DateTime
+  createdAt : DateTime
+}
+
+entity "UserRoleAssignment" as UserRoleAssignment {
++ id [PK] : BigInt
+--
+  # userId : [FK] User
+  # userRoleId : [FK] UserRole
+  deletedAt : DateTime
+}
+
+entity "UserRole" as UserRole {
++ id [PK] : BigInt
+--
+  * roleName : [UK] String
+  deletedAt : DateTime
+}
+
+entity "Session" as Session {
++ id [PK] : BigInt
+--
+  # userId : [FK] User
+  refreshTokenHash : String
+  * expiresAt : DateTime
+  createdAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt
+--
+  * enterpriseName : [UK] String
+  createdAt : DateTime
+  deletedAt : DateTime
+}
+
+entity "EnterpriseOwner" as EnterpriseOwner {
++ id [PK] : BigInt
+--
+  # enterpriseId : [FK] Enterprise
+  # userOwnerId : [FK] User
+}
+
+entity "EnterpriseMember" as EnterpriseMember {
++ id [PK] : BigInt
+--
+  # enterpriseId : [FK] Enterprise
+  # userMemberId : [FK] User
+}
+
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt
+--
+  # ghBlockId : [FK] GreenhouseBlock
+  # ghShapeTypeId : [FK] GreenhouseShape
+  # ghMaterialId : [FK] GreenhouseMaterial
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "GreenhouseMaterial" as GreenhouseMaterial {
++ id [PK] : BigInt
+--
+  * materialName : [UK] String
+}
+
+entity "GreenhouseShape" as GreenhouseShape {
++ id [PK] : BigInt
+--
+  * ghShapeName : [UK] String
+  * isExtensible : Boolean
+}
+
+entity "Soil" as Soil {
++ id [PK] : BigInt
+--
+  * soilName : [UK] String
+  * soilBulkDensity : Float
+  * soilPorosity : Float
+  * soilLayerSpecificMass : Float
+  * soilFieldCapacity : Float
+  * soilAcidity : Float
+}
+
+entity "Variety" as Variety {
++ id [PK] : BigInt
+--
+  # cropId : [FK] Crop
+  varietyName : String
+  * weight1000Seeds : Decimal
+  * growthFactor : Decimal
+}
+
+entity "Crop" as Crop {
++ id [PK] : BigInt
+--
+  * cropName : [UK] String
+}
+
+entity "CultureSoilRecommendation" as CultureSoilRecommendation {
++ id [PK] : BigInt
+--
+  # cropId : [FK] Crop
+  # soilId : [FK] Soil
+}
+
+' Relations
+TechnologicalCard }o--|| Enterprise: enterpriseId
+TechnologicalCard }o--|| Variety: varietyId
+Planting }o--o| TechnologicalCard: tcId
+PlantingGreenhouseBlock }o--o| GreenhouseBlock: blockId
+PlantingGreenhouseBlock }o--|| Planting: seedingId
+UserRoleAssignment }o--|| User: userId
+UserRoleAssignment }o--|| UserRole: userRoleId
+Session }o--|| User: userId
+EnterpriseOwner }o--|| Enterprise: enterpriseId
+EnterpriseOwner }o--|| User: userOwnerId
+EnterpriseMember }o--|| Enterprise: enterpriseId
+EnterpriseMember }o--|| User: userMemberId
+GreenhouseBlock }o--|| Enterprise: enterpriseId
+GreenhouseBlock }o--o| Soil: soilId
+Greenhouse }o--o| GreenhouseBlock: ghBlockId
+Greenhouse }o--|| GreenhouseMaterial: ghMaterialId
+Greenhouse }o--|| GreenhouseShape: ghShapeTypeId
+Variety }o--|| Crop: cropId
+CultureSoilRecommendation }o--|| Crop: cropId
+CultureSoilRecommendation }o--|| Soil: soilId
+' ManyToMany Relations
+' enum relations
+@enduml

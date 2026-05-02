@@ -1,7 +1,60 @@
 packages:
   - ./apps/**
   - ./packages/**
+
 allowBuilds:
-  '@prisma/engines': true
+  "@prisma/client": true
+  "@prisma/engines": true
+  "@swc/core": true
   core-js: true
+  esbuild: true
+  nx: true
   prisma: true
+
+catalogs:
+  nx:
+    "@nx/docker": "22.6.5"
+    "@nx/js": "22.6.5"
+    "@nx/storybook": "22.6.5"
+    "@nx/vite": "22.6.5"
+    "@nx/web": "22.6.5"
+  storybook:
+    "@storybook/react": "10.3.6"
+    "@storybook/react-vite": "10.3.6"
+  react19:
+    "react": "^19.2.5"
+    "react-dom": "^19.2.5"
+
+catalog:
+  "zod": "4.4.2"
+  "@vitejs/plugin-react": "6.0.1"
+  "express": "^5.2.1"
+  "react-admin": "5.14.6"
+  "react-router": "7.14.2"
+  "react-toastify": "11.1.0"
+  "@prisma/adapter-pg": "^7.8.0"
+  "@prisma/client": "^7.8.0"
+  "@swc-node/register": "~1.11.1"
+  "@swc/core": "~1.15.5"
+  "@swc/helpers": "~0.5.18"
+  "@types/express": "^5.0.6"
+  "@types/node": "^25.6.0"
+  "@types/react": "19.2.14"
+  "@types/react-dom": "19.2.3"
+  "@types/react-router": "5.1.20"
+  "dotenv": "^17.4.2"
+  "husky": "^9.1.7"
+  "nx": "22.6.5"
+  "oxfmt": "0.47.0"
+  "oxlint": "1.62.0"
+  "prisma": "^7.8.0"
+  "prisma-generator-express": "1.35.0"
+  "prisma-generator-plantuml-erd": "1.7.1"
+  "storybook": "10.3.6"
+  "ts-node": "10.9.1"
+  "tslib": "^2.3.0"
+  "typescript": "^6.0.3"
+  "vite": "^6.0.0"
+  "vitest": "^4.1.4"
+
+catalogMode: "strict"

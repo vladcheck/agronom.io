@@ -1,24 +1,28 @@
 {
-	"name": "@agrario/backend",
-	"version": "0.1.0",
-	"main": "./cmd/app.ts",
-	"type": "module",
-	"private": true,
-	"scripts": {
-		"typecheck": "tsc --noEmit",
-		"lint": "pnpx @biomejs/biome check"
-	},
-	"packageManager": "pnpm@10.33.0",
-	"devDependencies": {
-		"@biomejs/biome": "*",
-		"@prisma/client": "*",
-		"prisma": "*",
-		"@types/express": "^5.0.6",
-		"typescript": "*",
-		"vitest": "*"
-	},
-	"dependencies": {
-		"@agrario/shared": "workspace:*",
-		"express": "^5.2.1"
-	}
+  "name": "@agrario/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./cmd/app.ts",
+  "scripts": {
+    "lint": "pnpx oxlint",
+    "format": "pnpx oxfmt --check",
+    "format:fix": "pnpx oxfmt",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "catalog:",
+    "express": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@prisma/client": "catalog:",
+    "@types/express": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "prisma": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "packageManager": "pnpm@10.33.0"
 }

@@ -3,6 +3,18 @@ generator client {
   previewFeatures = ["postgresqlExtensions"]
 }
 
+generator express {
+  provider = "prisma-generator-express"
+}
+
+generator erd_plantuml {
+  provider                   = "prisma-generator-plantuml-erd"
+  output                     = "../docs/erd.puml"
+  exportPerTables            = false
+  showUniqueKeyLabel         = true
+  isShowForeignKeyOnRelation = true
+}
+
 datasource db {
   provider   = "postgresql"
   extensions = [postgis]

@@ -1,13 +1,28 @@
 {
-	"name": "@agrario/frontend",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"lint": "pnpx @biomejs/biome check",
-		"typecheck": "tsc --noEmit"
-	},
-	"packageManager": "pnpm@10.33.0",
-	"devDependencies": {
-		"typescript": "*"
-	}
+  "name": "@agrario/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "pnpx oxlint",
+    "format": "pnpx oxfmt --check",
+    "format:fix": "pnpx oxfmt",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "catalog:react19",
+    "react-admin": "catalog:",
+    "react-dom": "catalog:react19",
+    "react-router": "catalog:",
+    "react-toastify": "catalog:",
+    "vite": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@types/react-router": "catalog:",
+    "typescript": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:"
+  },
+  "packageManager": "pnpm@10.33.0"
 }
