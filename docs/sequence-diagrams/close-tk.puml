@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Инициировать закрытие ТК
+Client -> Server: Отправить запрос закрытия
+Server -> DB: Проверить статус посадки
+DB --> Server: Текущий статус
+Server -> DB: Получить фактические данные
+DB --> Server: Данные урожая
+Server -> DB: Обновить статус на \"завершено\"
+DB --> Server: Подтверждение обновления
+Server -> DB: Сохранить итоговые показатели
+DB --> Server: Подтверждение
+Server --> Client: ТК закрыта
+Client --> Agro: Показать итоги цикла
+
+@enduml

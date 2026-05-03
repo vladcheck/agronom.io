@@ -1,8 +1,8 @@
 #!/bin/zsh
 set -euo pipefail
 
-path_to_source_file="${PWD}/docs/erd.puml"
-path_to_png_artifact="${PWD}/docs/erd.png"
+path_to_source_file=
+path_to_png_artifact=
 path_to_plantuml_jar="${HOME}/plantuml-1.2026.2.jar"
 verbose=0
 quiet=0

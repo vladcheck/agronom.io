@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Администратор" as Admin
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Admin -> Client: Выбрать пользователя для удаления
+Client -> Server: Загрузить список пользователей
+Server -> DB: Получить всех пользователей
+DB --> Server: Список пользователей
+Server --> Client: Передать список
+Client --> Admin: Отобразить пользователей
+Admin -> Client: Удалить пользователя
+Client -> Server: Отправить ID пользователя
+Server -> DB: Обновить статус пользователя
+DB --> Server: Подтверждение удаления
+Server --> Client: Пользователь удален
+Client --> Admin: Показать подтверждение
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Запросить историю рассад
+Client -> Server: Отправить запрос истории
+Server -> DB: Получить все посадки предприятия
+DB --> Server: Список посадок
+Server -> DB: Загрузить детали ТК
+DB --> Server: Параметры ТК
+Server -> DB: Получить данные блоков
+DB --> Server: Информация о блоках
+Server --> Client: Сформировать историю
+Client --> Agro: Отобразить диаграмму Ганта
+
+@enduml

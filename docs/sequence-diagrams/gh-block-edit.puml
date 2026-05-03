@@ -1,0 +1,42 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+skinparam page {
+  Width 400
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Выбрать блок для редактирования
+Client -> Server: Загрузить текущие данные блока
+Server -> DB: Получить данные блока
+DB --> Server: Текущие параметры
+Server --> Client: Передать данные
+Client --> Agro: Показать форму редактирования
+Agro -> Client: Внести изменения
+Client -> Server: Отправить обновленные данные
+Server -> DB: Валидировать изменения
+DB --> Server: Результат валидации
+Server -> DB: Обновить запись блока
+DB --> Server: Подтверждение обновления
+Server --> Client: Блок обновлен
+Client --> Agro: Показать обновленный блок
+
+@enduml

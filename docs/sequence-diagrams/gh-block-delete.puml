@@ -1,0 +1,43 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+skinparam page {
+  Width 400
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Выбрать блок для удаления
+Client -> Server: Запросить удаление блока
+Server -> DB: Проверить наличие активных посадок
+DB --> Server: Статус посадок
+alt Есть активные посадки
+  Server --> Client: Ошибка: блок занят
+  Client --> Agro: Показать ошибку
+else Блок свободен
+  Server -> DB: Удалить связь с посадками
+  DB --> Server: Подтверждение
+  Server -> DB: Удалить запись блока
+  DB --> Server: Подтверждение удаления
+  Server --> Client: Блок удален
+  Client --> Agro: Показать подтверждение
+end
+
+@enduml
