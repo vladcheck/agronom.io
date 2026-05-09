@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Инициировать создание предприятия
+Client -> Agro: Запросить разметку территории
+Agro -> Client: Нарисовать полигон предприятия
+Client -> Server: Отправить координаты полигона
+Server -> DB: Валидировать геометрию (не на воде)
+DB --> Server: Результат валидации
+Server -> DB: Создать запись предприятия
+DB --> Server: ID предприятия
+Server -> DB: Сохранить владельца предприятия
+DB --> Server: Подтверждение
+Server --> Client: Предприятие создано
+Client --> Agro: Показать карту с предприятием
+
+@enduml

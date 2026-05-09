@@ -1,0 +1,40 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Выбрать предприятие
+Client -> Server: Загрузить карту предприятия
+Server -> DB: Получить полигон предприятия
+DB --> Server: Данные предприятия
+Server --> Client: Отобразить карту
+Agro -> Client: Нарисовать полигон теплицы
+Client -> Server: Отправить координаты теплицы
+Server -> DB: Валидировать границы (внутри предприятия)
+DB --> Server: Результат валидации
+Server -> DB: Создать запись теплицы
+DB --> Server: ID теплицы
+Server -> DB: Сохранить параметры теплицы
+DB --> Server: Подтверждение
+Server --> Client: Теплица создана
+Client --> Agro: Показать теплицу на карте
+
+@enduml

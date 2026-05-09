@@ -1,0 +1,33 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Гость" as Guest
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Guest -> Client: Заполнить форму регистрации
+Client -> Server: Отправить данные регистрации
+Server -> DB: Проверить уникальность email
+DB --> Server: Результат проверки
+Server -> DB: Создать запись пользователя
+DB --> Server: Подтверждение создания
+Server --> Client: Успешная регистрация
+Client --> Guest: Показать подтверждение
+
+@enduml

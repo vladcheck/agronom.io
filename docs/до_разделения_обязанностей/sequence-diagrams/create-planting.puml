@@ -1,0 +1,88 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Открыть создание новой посадки
+Client -> Server: Получить список доступных ТК
+Server -> DB: Загрузить технологические карты
+DB --> Server: Список ТК
+Server --> Client: Передать ТК
+Client --> Agro: Показать ТК для выбора
+Agro -> Client: Выбрать ТК
+Client -> Server: Загрузить параметры выбранной ТК
+Server -> DB: Получить детали ТК
+DB --> Server: Параметры ТК
+Server --> Client: Передать параметры
+Client --> Agro: Показать требования ТК
+Agro -> Client: Указать даты и площади
+Client -> Server: Отправить параметры посадки
+Server -> DB: Проверить доступность блоков
+DB --> Server: Статус блоков
+Server -> DB: Проверить предшественников
+DB --> Server: История посадок
+Server -> Server: Выполнить валидацию требований
+
+alt Статус: "Невозможно реализовать"
+  Server --> Client: Вернуть ошибку валидации
+  Client --> Agro: Показать критические ошибки
+  Agro -> Client: Закрыть создание посадки или изменить параметры
+  Client -> Server: Отправить измененные параметры
+  Server -> Server: Повторить валидацию
+  Server --> Client: Результат повторной проверки
+  Client --> Agro: Показать обновленный статус
+
+else Статус: "Можно оптимизировать"
+  Server --> Client: Вернуть рекомендации по оптимизации
+  Client --> Agro: Показать предупреждения и предложения
+  alt Агроном принимает оптимизацию
+    Agro -> Client: Подтвердить оптимизированный план
+    Client -> Server: Отправить подтверждение
+    Server -> DB: Создать запись в Planting
+    DB --> Server: ID посадки
+    Server -> DB: Связать с блоками теплиц
+    DB --> Server: Подтверждение связи
+    Server --> Client: Посадка создана
+    Client --> Agro: Показать график посадки
+  else Агроном отклоняет оптимизацию
+    Agro -> Client: Внести ручные корректировки
+    Client -> Server: Отправить измененные параметры
+    Server -> Server: Повторить проверку
+    Server --> Client: Новый статус
+    Client --> Agro: Показать обновленный результат
+  end
+
+else Статус: "Можно реализовать"
+  Server --> Client: Вернуть успешную валидацию
+  Client --> Agro: Показать подтверждение без ошибок
+  Agro -> Client: Подтвердить создание посадки
+  Client -> Server: Отправить финальные параметры
+  Server -> DB: Создать запись в Planting
+  DB --> Server: ID посадки
+  Server -> DB: Сохранить снимок нормы высадки
+  DB --> Server: Подтверждение
+  Server -> DB: Связать с блоками теплиц
+  DB --> Server: Подтверждение связи
+  Server --> Client: Посадка создана
+  Client --> Agro: Показать график посадки
+end
+
+@enduml

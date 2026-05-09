@@ -1,0 +1,36 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+
+actor "Гость" as Guest
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Guest -> Client: Ввести логин и пароль
+Client -> Server: Отправить учетные данные
+Server -> DB: Найти пользователя по email
+DB --> Server: Данные пользователя
+Server -> DB: Проверить хеш пароля
+DB --> Server: Результат проверки
+Server -> DB: Создать сессию
+DB --> Server: Токен сессии
+Server --> Client: Возвратить токен доступа
+Client --> Guest: Переход в личный кабинет
+
+@enduml
+

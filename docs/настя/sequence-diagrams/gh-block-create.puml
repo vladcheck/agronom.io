@@ -1,0 +1,42 @@
+@startuml
+!theme plain
+skinparam maxMessageSize 200
+skinparam sequence {
+  LifeLineStrategy solid
+}
+skinparam participant {
+  BackgroundColor White
+}
+skinparam actor {
+  BackgroundColor White
+}
+skinparam database {
+  BackgroundColor White
+}
+skinparam page {
+  Width 400
+}
+
+actor "Агроном" as Agro
+participant "Client" as Client
+participant "Server" as Server
+database "Database" as DB
+
+autonumber
+
+Agro -> Client: Инициировать создание блока
+Client -> Server: Получить список теплиц
+Server -> DB: Загрузить теплицы предприятия
+DB --> Server: Список теплиц
+Server --> Client: Передать теплицы
+Client --> Agro: Выбрать теплицы для блока
+Agro -> Client: Ввести параметры блока
+Client -> Server: Отправить данные блока
+Server -> DB: Валидировать данные
+DB --> Server: Результат валидации
+Server -> DB: Создать запись GreenhouseBlock
+DB --> Server: ID блока
+Server --> Client: Блок создан
+Client --> Agro: Показать созданный блок
+
+@enduml
