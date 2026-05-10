@@ -22,82 +22,87 @@ datasource db {
 
 model TechnologicalCard {
   id                 BigInt     @id @default(autoincrement()) @map("id")
+  hybridId           BigInt     @map("hybrid_id")
   enterpriseId       BigInt     @map("enterprise_id")
-  varietyId          BigInt     @map("variety_id")
   plantingDensity    Int        @map("planting_density")
   plantingNormPerHa  Float      @map("planting_norm_per_ha")
-  plannedYield       Decimal    @map("planned_yield")
-  growthDurationDays Int?       @map("growth_duration_days")
-  appliedSeedWeight  Decimal?   @map("applied_seed_weight")
-  deletedAt          DateTime?  @default(now()) @map("deleted_at")
+  growthDurationDays Int        @map("growth_duration_days")
+  appliedSeedWeight  Decimal    @map("applied_seed_weight")
+  updatedAt          DateTime   @default(now()) @map("updated_at")
+  deletedAt          DateTime?  @map("deleted_at")
+  authorId           BigInt     @map("author_id")
   plantings          Planting[]
+  author             User       @relation(fields: [authorId], references: [id])
+  hybrid             Hybrid     @relation(fields: [hybridId], references: [id])
   enterprise         Enterprise @relation(fields: [enterpriseId], references: [id], onDelete: Cascade)
-  variety            Variety    @relation(fields: [varietyId], references: [id])
 
   @@index([enterpriseId])
-  @@index([varietyId])
+  @@index([hybridId])
+  @@index([authorId])
   @@map("technological_cards")
 }
 
 model Planting {
-  id                            BigInt                    @id @default(autoincrement()) @map("id")
-  tcId                          BigInt?                   @map("tc_id")
-  startDate                     DateTime                  @map("start_date") @db.Timestamptz(6)
-  endDate                       DateTime                  @map("end_date") @db.Timestamptz(6)
-  plantingNormSnapshotThousands Decimal?                  @map("planting_norm_snapshot_thousands")
-  areaHa                        Decimal?                  @map("area_ha")
-  deletedAt                     DateTime?                 @default(now()) @map("deleted_at")
-  plantingGreenhouseBlocks      PlantingGreenhouseBlock[]
-  tc                            TechnologicalCard?        @relation(fields: [tcId], references: [id], onDelete: Cascade)
+  id        BigInt            @id @default(autoincrement()) @map("id")
+  startDate DateTime          @map("start_date") @db.Timestamptz(6)
+  endDate   DateTime          @map("end_date") @db.Timestamptz(6)
+  createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime          @default(now()) @map("updated_at") @db.Timestamptz(6)
+  tcId      BigInt            @map("tc_id")
+  statusId  BigInt
+  tc        TechnologicalCard @relation(fields: [tcId], references: [id], onDelete: Cascade)
+  blocks    GreenhouseBlock[]
+  status    PlantingStatus    @relation(fields: [statusId], references: [id])
 
   @@index([tcId])
   @@map("plantings")
 }
 
-model PlantingGreenhouseBlock {
-  id        Int              @id @default(autoincrement())
-  seedingId BigInt           @map("seeding_id")
-  blockId   BigInt?          @map("block_id")
-  block     GreenhouseBlock? @relation(fields: [blockId], references: [id])
-  seeding   Planting         @relation(fields: [seedingId], references: [id], onDelete: Cascade)
+model PlantingStatus {
+  id        BigInt     @id @default(autoincrement()) @map("id")
+  name      String     @unique @db.VarChar(128)
+  plantings Planting[]
 
-  @@map("planting_greenhouse_blocks")
+  @@index([id, name])
 }
 
 model User {
   id                  BigInt               @id @default(autoincrement()) @map("id")
-  firstName           String               @default("") @map("first_name") @db.VarChar(128)
-  lastName            String               @default("") @map("last_name") @db.VarChar(128)
+  firstName           String               @map("first_name") @db.VarChar(128)
+  lastName            String               @map("last_name") @db.VarChar(128)
   email               String               @unique @map("email") @db.VarChar(256)
   hash                String               @map("hash") @db.VarChar(256)
-  deletedAt           DateTime?            @default(now()) @map("deleted_at")
-  createdAt           DateTime?            @default(now()) @map("created_at") @db.Timestamptz(6)
-  enterpriseMembers   EnterpriseMember[]
-  enterpriseOwners    EnterpriseOwner[]
+  updatedAt           DateTime             @default(now()) @map("updated_at") @db.Timestamptz(6)
+  blockedAt           DateTime?            @map("blocked_at")
+  blockedReason       String?              @map("blocked_reason")
   sessions            Session[]
   userRoleAssignments UserRoleAssignment[]
+  technologicalCards  TechnologicalCard[]
+  ownedEnterprises    Enterprise[]         @relation("EnterpriseOwner")
+  enterprises         Enterprise[]         @relation("EnterpriseMembers")
 
   @@index([email], map: "email_unique")
   @@map("users")
 }
 
 model UserRoleAssignment {
-  id         BigInt    @id @default(autoincrement()) @map("id")
-  userId     BigInt    @map("user_id")
-  userRoleId BigInt    @map("user_role_id")
-  deletedAt  DateTime? @default(now()) @map("deleted_at")
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role       UserRole  @relation(fields: [userRoleId], references: [id], onDelete: Cascade)
+  id           BigInt     @id @default(autoincrement()) @map("id")
+  userId       BigInt     @map("user_id")
+  userRoleId   BigInt     @map("user_role_id")
+  enterpriseId BigInt     @map("enterprise_id")
+  enterprise   Enterprise @relation(fields: [enterpriseId], references: [id], onDelete: Cascade)
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role         UserRole   @relation(fields: [userRoleId], references: [id], onDelete: Cascade)
+  assignedAt   DateTime   @default(now()) @db.Timestamptz(6)
+  revokedAt    DateTime?  @db.Timestamptz(6)
 
-  @@unique([userId, userRoleId])
-  @@index([userId, userRoleId])
+  @@index([userId, userRoleId, enterpriseId])
   @@map("user_role_assignments")
 }
 
 model UserRole {
   id                  BigInt               @id @default(autoincrement()) @map("id")
-  roleName            String               @unique @map("role_name") @db.VarChar(64)
-  deletedAt           DateTime?            @default(now()) @map("deleted_at")
+  name                String               @unique @map("name") @db.VarChar(64)
   userRoleAssignments UserRoleAssignment[]
 
   @@map("user_roles")
@@ -107,81 +112,59 @@ model Session {
   id               BigInt    @id @default(autoincrement()) @map("id")
   userId           BigInt    @map("user_id")
   refreshTokenHash String?   @map("refresh_token_hash")
-  expiresAt        DateTime  @map("expires_at") @db.Timestamptz(6)
   createdAt        DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  expiresAt        DateTime  @map("expires_at") @db.Timestamptz(6)
   user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
 }
 
 model Enterprise {
-  id                 BigInt                   @id @default(autoincrement()) @map("id")
-  enterpriseName     String                   @unique @map("enterprise_name") @db.VarChar(128)
-  shape              Unsupported("geometry")? @map("shape")
-  createdAt          DateTime?                @default(now()) @map("created_at") @db.Timestamptz(6)
-  deletedAt          DateTime?                @default(now()) @map("deleted_at")
-  enterpriseMembers  EnterpriseMember[]
-  enterpriseOwners   EnterpriseOwner[]
-  greenhouseBlocks   GreenhouseBlock[]
-  technologicalCards TechnologicalCard[]
+  id                  BigInt                   @id @default(autoincrement()) @map("id")
+  name                String                   @unique @map("enterprise_name") @db.VarChar(128)
+  shape               Unsupported("geometry")? @map("shape")
+  updatedAt           DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
+  participants        User[]                   @relation("EnterpriseMembers")
+  owner               User                     @relation("EnterpriseOwner", fields: [ownerId], references: [id])
+  ownerId             BigInt
+  userRoleAssignments UserRoleAssignment[]
+  technologicalCards  TechnologicalCard[]
+  greenhouseBlocks    GreenhouseBlock[]
 
-  @@unique([id, enterpriseName])
+  @@unique([id, name])
+  @@index([ownerId])
   @@map("enterprises")
 }
 
-model EnterpriseOwner {
-  id           BigInt     @id @default(autoincrement()) @map("id")
-  enterpriseId BigInt     @map("enterprise_id")
-  userOwnerId  BigInt     @map("user_owner_id")
-  enterprise   Enterprise @relation(fields: [enterpriseId], references: [id])
-  user         User       @relation(fields: [userOwnerId], references: [id])
-
-  @@index([userOwnerId])
-  @@index([enterpriseId])
-  @@map("enterprise_owners")
-}
-
-model EnterpriseMember {
-  id           BigInt     @id @default(autoincrement()) @map("id")
-  enterpriseId BigInt     @map("enterprise_id")
-  userMemberId BigInt     @map("user_member_id")
-  enterprise   Enterprise @relation(fields: [enterpriseId], references: [id])
-  user         User       @relation(fields: [userMemberId], references: [id])
-
-  @@index([userMemberId])
-  @@index([enterpriseId])
-  @@map("enterprise_members")
-}
-
 model GreenhouseBlock {
-  id                       BigInt                    @id @default(autoincrement()) @map("id")
-  enterpriseId             BigInt                    @map("enterprise_id")
-  soilId                   BigInt?                   @map("soil_id")
-  deletedAt                DateTime?                 @default(now()) @map("deleted_at")
-  enterprise               Enterprise                @relation(fields: [enterpriseId], references: [id], onDelete: Cascade)
-  soil                     Soil?                     @relation(fields: [soilId], references: [id])
-  greenhouses              Greenhouse[]
-  plantingGreenhouseBlocks PlantingGreenhouseBlock[]
+  id           BigInt       @id @default(autoincrement()) @map("id")
+  enterpriseId BigInt       @map("enterprise_id")
+  soilId       BigInt?      @map("soil_id")
+  deletedAt    DateTime?    @map("deleted_at")
+  enterprise   Enterprise   @relation(fields: [enterpriseId], references: [id], onDelete: Cascade)
+  greenhouses  Greenhouse[]
+  plantings    Planting[]
+  soil         Soil?        @relation(fields: [soilId], references: [id])
 
   @@map("greenhouse_blocks")
 }
 
 model Greenhouse {
   id                  BigInt                   @id @default(autoincrement()) @map("id")
-  ghBlockId           BigInt?                  @map("gh_block_id")
-  ghShapeTypeId       BigInt                   @map("gh_shape_type_id")
-  ghMaterialId        BigInt                   @map("gh_material_id")
+  blockId             BigInt?                  @map("gh_block_id")
+  shapeTypeId         BigInt                   @map("gh_shape_type_id")
+  materialId          BigInt                   @map("gh_material_id")
   hasArtificialLights Boolean                  @map("has_artificial_lights")
   hasVentilation      Boolean                  @map("has_ventilation")
   shape               Unsupported("geometry")? @map("shape")
-  deletedAt           DateTime?                @default(now()) @map("deleted_at")
-  block               GreenhouseBlock?         @relation(fields: [ghBlockId], references: [id])
-  material            GreenhouseMaterial       @relation(fields: [ghMaterialId], references: [id])
-  shapeType           GreenhouseShape          @relation(fields: [ghShapeTypeId], references: [id])
+  deletedAt           DateTime?                @map("deleted_at")
+  block               GreenhouseBlock?         @relation(fields: [blockId], references: [id])
+  material            GreenhouseMaterial       @relation(fields: [materialId], references: [id])
+  shapeType           GreenhouseShape          @relation(fields: [shapeTypeId], references: [id])
 
-  @@index([ghBlockId])
-  @@index([ghShapeTypeId])
-  @@index([ghMaterialId])
+  @@index([blockId])
+  @@index([shapeTypeId])
+  @@index([materialId])
   @@index([hasArtificialLights])
   @@index([hasVentilation])
   @@map("greenhouses")
@@ -198,69 +181,51 @@ model GreenhouseMaterial {
 
 model GreenhouseShape {
   id           BigInt       @id @default(autoincrement()) @map("id")
-  ghShapeName  String       @unique @map("gh_shape_name") @db.VarChar(128)
+  name         String       @unique @map("name") @db.VarChar(128)
   isExtensible Boolean      @map("is_extensible")
   greenhouses  Greenhouse[]
 
+  @@index([id, name])
   @@index([isExtensible])
   @@map("greenhouse_shapes")
 }
 
 model Soil {
-  id                         BigInt                      @id @default(autoincrement()) @map("id")
-  soilName                   String                      @unique @map("soil_name") @db.VarChar(128)
-  soilBulkDensity            Float                       @map("soil_bulk_density")
-  soilPorosity               Float                       @map("soil_porosity")
-  soilLayerSpecificMass      Float                       @map("soil_layer_specific_mass")
-  soilFieldCapacity          Float                       @map("soil_field_capacity")
-  soilAcidity                Float                       @map("soil_acidity")
-  cultureSoilRecommendations CultureSoilRecommendation[]
-  greenhouseBlocks           GreenhouseBlock[]
+  id                BigInt            @id @default(autoincrement()) @map("id")
+  name              String            @unique @map("name") @db.VarChar(128)
+  bulkDensity       Float             @map("soil_bulk_density")
+  porosity          Float             @map("soil_porosity")
+  layerSpecificMass Float             @map("soil_layer_specific_mass")
+  fieldCapacity     Float             @map("soil_field_capacity")
+  acidity           Float             @map("soil_acidity")
+  cultures          Culture[]
+  greenhouseBlocks  GreenhouseBlock[]
 
-  @@unique([id, soilName])
+  @@index([id, name])
   @@map("soils")
 }
 
-model Variety {
-  id                 BigInt              @id @default(autoincrement()) @map("id")
-  cropId             BigInt              @map("crop_id")
-  varietyName        String?             @map("variety_name") @db.VarChar(128)
-  weight1000Seeds    Decimal             @map("weight_1000_seeds")
-  growthFactor       Decimal             @map("growth_factor")
-  technologicalCards TechnologicalCard[]
-  crop               Crop                @relation(fields: [cropId], references: [id])
+model Culture {
+  id      BigInt   @id @default(autoincrement()) @map("id")
+  name    String   @unique @map("name") @db.VarChar(128)
+  hybrids Hybrid[]
+  soils   Soil[]
 
-  @@index([cropId])
-  @@map("varieties")
-}
-
-model Crop {
-  id                         BigInt                      @id @default(autoincrement()) @map("id")
-  cropName                   String                      @unique @map("crop_name") @db.VarChar(128)
-  cultureSoilRecommendations CultureSoilRecommendation[]
-  varieties                  Variety[]
-
-  @@unique([id, cropName])
+  @@index([id, name])
   @@map("crops")
 }
 
-model CultureSoilRecommendation {
-  id     BigInt @id @default(autoincrement()) @map("id")
-  cropId BigInt @map("crop_id")
-  soilId BigInt @map("soil_id")
-  crop   Crop   @relation(fields: [cropId], references: [id])
-  soil   Soil   @relation(fields: [soilId], references: [id])
+model Hybrid {
+  id                     BigInt              @id @default(autoincrement()) @map("id")
+  name                   String              @map("name") @db.VarChar(128)
+  weight1000Seeds        Decimal             @map("weight_1000_seeds")
+  growthFactor           Decimal             @map("growth_factor")
+  disallowedPredecessors Hybrid[]            @relation("HybridPredecessors")
+  predecessorFor         Hybrid[]            @relation("HybridPredecessors")
+  culture                Culture?            @relation(fields: [cultureId], references: [id])
+  technologicalCards     TechnologicalCard[]
+  cultureId              BigInt?
 
-  @@map("culture_soil_recommendations")
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model spatial_ref_sys {
-  srid      Int     @id
-  auth_name String? @db.VarChar(256)
-  auth_srid Int?
-  srtext    String? @db.VarChar(2048)
-  proj4text String? @db.VarChar(2048)
-
-  @@ignore
+  @@index([id, name])
+  @@map("hybrids")
 }
