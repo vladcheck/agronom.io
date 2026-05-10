@@ -28,7 +28,7 @@
     "management",
     "software"
   ],
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@11.0.9",
   "devDependencies": {
     "@nx/docker": "catalog:nx",
     "@nx/js": "catalog:nx",
@@ -46,9 +46,9 @@
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "prisma": "catalog:",
+    "prisma-class-generator": "catalog:",
     "prisma-generator-express": "catalog:",
     "prisma-generator-plantuml-erd": "catalog:",
-    "storybook": "catalog:",
     "ts-node": "catalog:",
     "tslib": "catalog:",
     "typescript": "catalog:"

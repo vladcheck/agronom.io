@@ -2,8 +2,9 @@
   "compilerOptions": {
     "module": "nodenext",
     "target": "esnext",
-    "lib": ["ES2025"],
-    "types": ["node"],
+    "lib": [
+      "ES2025"
+    ],
     "moduleResolution": "nodenext",
     "sourceMap": true,
     "declaration": true,
@@ -18,5 +19,10 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "exclude": ["**/node_modules/*", "**/dist/*", "**/build/*", "**/out/*"]
+  "exclude": [
+    "**/node_modules/*",
+    "**/dist/*",
+    "**/build/*",
+    "**/out/*"
+  ]
 }
