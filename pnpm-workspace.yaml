@@ -57,5 +57,9 @@ catalog:
   vite: ^6.0.0
   vitest: ^4.1.4
   prisma-class-generator: ^0.2.11
+  prisma-docs-generator: ^0.8.0
+  pg: ^8.20.0
+  '@types/pg': ^8.20.0
+  tsx: ^4.21.0
 
 catalogMode: strict

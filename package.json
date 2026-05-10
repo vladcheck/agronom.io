@@ -15,9 +15,11 @@
     "format:all": "nx run-many -t format --all",
     "format:affected": "nx affected -t format",
     "ci:quality": "pnpm lint:affected && pnpm test:affected",
+    "db:seed": "prisma db seed",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:reset-force": "./scripts/prisma-complete-clear.sh",
+    "db:docs:serve": "npx prisma-docs-generator serve",
     "pretypecheck": "prisma generate",
     "typecheck:all": "nx run-many --target=typecheck --all",
     "typecheck:affected": "nx affected --target=typecheck"
@@ -29,6 +31,11 @@
     "software"
   ],
   "packageManager": "pnpm@11.0.9",
+  "dependencies": {
+    "@prisma/adapter-pg": "catalog:",
+    "pg": "catalog:",
+    "prisma": "catalog:"
+  },
   "devDependencies": {
     "@nx/docker": "catalog:nx",
     "@nx/js": "catalog:nx",
@@ -41,16 +48,17 @@
     "@swc-node/register": "catalog:",
     "@swc/core": "catalog:",
     "@swc/helpers": "catalog:",
+    "@types/pg": "catalog:",
+    "dotenv": "catalog:",
     "husky": "catalog:",
     "nx": "catalog:",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
-    "prisma": "catalog:",
-    "prisma-class-generator": "catalog:",
     "prisma-generator-express": "catalog:",
     "prisma-generator-plantuml-erd": "catalog:",
     "ts-node": "catalog:",
     "tslib": "catalog:",
+    "tsx": "catalog:",
     "typescript": "catalog:"
   },
   "nx": {},
