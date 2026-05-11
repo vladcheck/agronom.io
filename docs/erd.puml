@@ -1,0 +1,162 @@
+@startuml erd
+skinparam linetype ortho
+entity "TechnologicalCard" as TechnologicalCard {
++ id [PK] : BigInt 
+--
+  # hybridId : [FK] Hybrid
+  # enterpriseId : [FK] Enterprise
+  * plantingDensity : Int
+  * plantingNormPerHa : Float
+  * growthDurationDays : Int
+  * appliedSeedWeight : Decimal
+  * updatedAt : DateTime
+  deletedAt : DateTime
+  # authorId : [FK] User
+}
+
+entity "Planting" as Planting {
++ id [PK] : BigInt 
+--
+  * startDate : DateTime
+  * endDate : DateTime
+  * createdAt : DateTime
+  * updatedAt : DateTime
+  # tcId : [FK] TechnologicalCard
+  # statusId : [FK] PlantingStatus
+}
+
+entity "PlantingStatus" as PlantingStatus {
++ id [PK] : BigInt 
+--
+  * name : [UK] String
+}
+
+entity "User" as User {
++ id [PK] : BigInt 
+--
+  * firstName : String
+  * lastName : String
+  * email : [UK] String
+  * hash : String
+  * updatedAt : DateTime
+  blockedAt : DateTime
+  blockedReason : String
+}
+
+entity "UserRoleAssignment" as UserRoleAssignment {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  # userRoleId : [FK] UserRole
+  # enterpriseId : [FK] Enterprise
+  * assignedAt : DateTime
+  revokedAt : DateTime
+}
+
+entity "UserRole" as UserRole {
++ id [PK] : BigInt 
+--
+  * name : [UK] String
+}
+
+entity "Session" as Session {
++ id [PK] : BigInt 
+--
+  # userId : [FK] User
+  refreshTokenHash : String
+  createdAt : DateTime
+  * expiresAt : DateTime
+}
+
+entity "Enterprise" as Enterprise {
++ id [PK] : BigInt 
+--
+  * name : [UK] String
+  * updatedAt : DateTime
+  # ownerId : [FK] User
+}
+
+entity "GreenhouseBlock" as GreenhouseBlock {
++ id [PK] : BigInt 
+--
+  # enterpriseId : [FK] Enterprise
+  # soilId : [FK] Soil
+  deletedAt : DateTime
+}
+
+entity "Greenhouse" as Greenhouse {
++ id [PK] : BigInt 
+--
+  # blockId : [FK] GreenhouseBlock
+  # shapeTypeId : [FK] GreenhouseShape
+  # materialId : [FK] GreenhouseMaterial
+  # enterpriseId : [FK] Enterprise
+  * hasArtificialLights : Boolean
+  * hasVentilation : Boolean
+  deletedAt : DateTime
+}
+
+entity "GreenhouseMaterial" as GreenhouseMaterial {
++ id [PK] : BigInt 
+--
+  * materialName : [UK] String
+}
+
+entity "GreenhouseShape" as GreenhouseShape {
++ id [PK] : BigInt 
+--
+  * name : [UK] String
+  * isExtensible : Boolean
+}
+
+entity "Soil" as Soil {
++ id [PK] : BigInt 
+--
+  * name : [UK] String
+  * bulkDensity : Float
+  * porosity : Float
+  * layerSpecificMass : Float
+  * fieldCapacity : Float
+  * acidity : Float
+}
+
+entity "Culture" as Culture {
++ id [PK] : BigInt 
+--
+  * name : [UK] String
+}
+
+entity "Hybrid" as Hybrid {
++ id [PK] : BigInt 
+--
+  * name : String
+  * weight1000Seeds : Decimal
+  * growthFactor : Decimal
+  # cultureId : [FK] Culture
+}
+
+' Relations
+TechnologicalCard }o--|| User: authorId
+TechnologicalCard }o--|| Hybrid: hybridId
+TechnologicalCard }o--|| Enterprise: enterpriseId
+Planting }o--|| TechnologicalCard: tcId
+Planting }o--|| PlantingStatus: statusId
+UserRoleAssignment }o--|| Enterprise: enterpriseId
+UserRoleAssignment }o--|| User: userId
+UserRoleAssignment }o--|| UserRole: userRoleId
+Session }o--|| User: userId
+Enterprise }o--|| User: ownerId
+GreenhouseBlock }o--|| Enterprise: enterpriseId
+GreenhouseBlock }o--o| Soil: soilId
+Greenhouse }o--|| Enterprise: enterpriseId
+Greenhouse }o--o| GreenhouseBlock: blockId
+Greenhouse }o--|| GreenhouseMaterial: materialId
+Greenhouse }o--|| GreenhouseShape: shapeTypeId
+Hybrid }o--o| Culture: cultureId
+' ManyToMany Relations
+User }o--o{ Enterprise
+Planting }o--o{ GreenhouseBlock
+Soil }o--o{ Culture
+Hybrid }o--o{ Hybrid
+' enum relations
+@enduml
