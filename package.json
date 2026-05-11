@@ -18,8 +18,6 @@
     "db:seed": "prisma db seed",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:reset-force": "./scripts/prisma-complete-clear.sh",
-    "db:docs:serve": "npx prisma-docs-generator serve",
     "pretypecheck": "prisma generate",
     "typecheck:all": "nx run-many --target=typecheck --all",
     "typecheck:affected": "nx affected --target=typecheck"
@@ -37,6 +35,7 @@
     "prisma": "catalog:"
   },
   "devDependencies": {
+    "@faker-js/faker": "catalog:",
     "@nx/docker": "catalog:nx",
     "@nx/js": "catalog:nx",
     "@nx/storybook": "catalog:nx",
@@ -59,10 +58,14 @@
     "ts-node": "catalog:",
     "tslib": "catalog:",
     "tsx": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "zod": "catalog:"
   },
   "nx": {},
   "engines": {
     "node": ">=25.x.x <27"
+  },
+  "prisma": {
+    "seed": "tsx ./prisma/seed.ts"
   }
 }

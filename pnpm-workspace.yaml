@@ -26,7 +26,7 @@ catalogs:
     react-dom: ^19.2.5
 
 catalog:
-  zod: 4.4.2
+  zod: ^4.4.3
   "@vitejs/plugin-react": 6.0.1
   express: ^5.2.1
   react-admin: 5.14.6
@@ -59,7 +59,9 @@ catalog:
   prisma-class-generator: ^0.2.11
   prisma-docs-generator: ^0.8.0
   pg: ^8.20.0
-  '@types/pg': ^8.20.0
+  "@types/pg": ^8.20.0
   tsx: ^4.21.0
+  postgres: ^3.4.9
+  "@faker-js/faker": ^10.4.0
 
 catalogMode: strict
